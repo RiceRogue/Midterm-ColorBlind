@@ -7,6 +7,7 @@ public class Goal : MonoBehaviour
 
 
     public float timer = 0;
+    public float time = 0;
     public GameObject enemies;    
     public GameObject eye1;    
 
@@ -14,6 +15,7 @@ public class Goal : MonoBehaviour
 
     public GameObject goal1;    
     public GameObject goal2;    
+    public bool win = false;
 
 
     public bool eyegoal;
@@ -29,13 +31,27 @@ public class Goal : MonoBehaviour
 
         timer++;
 
-        if(timer % 600 == 0){
+        if(timer % 120 == 0){
             GameObject clone;
             
             clone = Instantiate(enemies, enemies.transform.position, enemies.transform.rotation);
             clone.transform.localScale = new Vector3(3,3,3);
         }
         
+        if(eyegoal == true){
+        eye1.transform.position = goal1.transform.position;
+        eye2.transform.position = goal2.transform.position;
+        }
+
+
+       if (eye1.GetComponent<Movement>().finish == true || eye2.GetComponent<Movement>().finish == true){
+                time += Time.deltaTime;
+                if(time > 5.0f){
+                    win = true;
+                    
+                }
+
+       }
     }
 
 
@@ -46,9 +62,11 @@ public class Goal : MonoBehaviour
             eyegoal = true;
             GetComponent<Collider2D>().enabled = false;
 
-            eye1.transform.position = goal1.transform.position;
-            eye2.transform.position = goal2.transform.position;
+            eye1.GetComponent<Movement>().finish = true;
+            eye2.GetComponent<Movement>().finish = true;
 
+
+            
         }
     }
 }

@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public int time;
+    public float time;
     public bool canMove = true;
     public Rigidbody2D rgb;
     public GameObject obj;
+    public GameObject thisPlayer;
     public float speed;
     public float jumpHeight = 2f;
     public float rayLength = 30f;
     public bool allowedToJump = false;
     private float moveHorizontal, moveVertical;
     public bool finish = false;
+    public bool following = false;
 
+    public bool isMoved = true;
 
+    public bool lost = false;
 
 
     // Start is called before the first frame update
@@ -28,11 +32,28 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(finish == false){
+        if(following == false){
        rgb.AddForce((obj.transform.position - transform.position)*12);
        //moveHorizontal = Input.GetAxis("Horizontal");
        //moveVertical = Input.GetAxis("Vertical");
         }
+
+
+            time += Time.deltaTime;
+
+            // if(rgb.velocity.x <= 0.01 && rgb.velocity.y <= 0.01){
+            // isMoved = false;
+
+            //     if(isMoved == false){
+            //         finish = true;
+            //         lost = true;
+
+            //     }  
+            
+            //  }
+            
+
+            
     }
     private void FixedUpdate(){
 
@@ -83,6 +104,12 @@ public class Movement : MonoBehaviour
 
     }
 
+
+    
+
      
     }
+
+
+    
 }
