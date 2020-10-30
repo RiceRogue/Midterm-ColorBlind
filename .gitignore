@@ -58,3 +58,10 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+/Midterm/[Ll]ibrary/
+/Midterm/[Tt]emp/
+/Midterm/[Oo]bj/
+/Midterm/[Bb]uild/
+/Midterm/[Bb]uilds/
+/Midterm/[Ll]ogs/
+/Midterm/[Mm]emoryCaptures/
